@@ -1,4 +1,6 @@
 const { Schema , model } = require('mongoose');
+const reactionsSchema = require('./reactionsModel');
+const dateFormat = require('../date');
 const thoughtsSchema = new Schema( {
     thoughtsText: {
         type: stringifyForDisplay,
@@ -12,8 +14,8 @@ const thoughtsSchema = new Schema( {
     },
     createdAt: {
         type: Date,
-        default:,
-        get:,
+        default: Date.now,
+        get: timestamp => dateFormat(timestamp),
     },
     reactions: [reactionsSchema],
 },
